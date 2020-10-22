@@ -1,0 +1,594 @@
+import random
+import time
+
+def printText(sentence):
+    for char in sentence:
+        print(char, end ='', flush = True)
+        time.sleep(.025)
+    print()
+
+def encounter(chance):
+    return random.randint(0,chance)
+    
+
+#Lists of items and enemies
+items = ["Silver Sword", "Iron Sword", "Valiant Sword", "Bow", "Valiant Bow", "Axe", "War Axe", "Berries", "Meat", "Small Potion of Healing", "Medium Potion of Healing", "Large Potion of Healing"]
+commonEnemy = ["Thief", "Rat", "Orc", "Goblin"]
+wasteLandEnemy = ["Nomad", "Orc"]
+wizardEnemy = ["Wizard Accomplice", "Trainee"]
+inventory = []
+Player_Hp = 40
+
+#Item Damages
+Wooden_Sword = "Wooden Sword" #random.randint(2,5)
+Silver_Sword = random.randint(4,6)
+Iron_Sword = random.randint(7,10)
+Valiant_Sword = random.randint(15,20)
+Damageged_Sword = random.randint(3,6)
+Bow = random.randint(7,8)
+Valiant_Bow = random.randint(14,16)
+Axe = random.randint(3,7)
+War_Axe = random.randint(5,12)
+Berries = 2
+Meat = 5
+Small_Pot = 10
+Medium_Pot = 15
+Large_Pot = 25
+
+#Locations
+FA1 = "You are at the entrance of the forest"
+FB1 = "You went to You went north and meet the side of a hill"
+FB2 = "You went forward and come towards a three way path"
+FB3 = "You went south towards a longated path "
+FB4 = "You continue south towards a fork in the road "
+FB5 = "You have come to a dead end "
+FC1 = "You are in the cave... It's a dead end "
+FC2 = "You are at the mouth of a cave "
+FC3 = "You go east in which the path continues east "
+FC4 = "You have come to a dead end "
+FD1 = "The path continues south "
+FD2 = "You are coming out of the forest, the path continue east "
+FE1 = "You have exited the Forest "
+
+WA1 = "You come to the wastelands, where shall you go? "
+WA2 = ""
+WB1 = ""
+WB2 = ""
+WB3 = ""
+WB4 = ""
+WB5 = ""
+WC1 = ""
+WC2 = ""
+WC3 = ""
+WC4 = ""
+WD1 = ""
+WD2 = ""
+WD3 = ""
+WD4 = ""
+WE1 = ""
+WE2 = ""
+WE3 = ""
+WE4 = ""
+WF1 = ""
+WF2 = ""
+
+#Things to keep track of
+location = FA1
+fight = True
+game = True
+forest = True
+
+#Enemy Health and Damage
+
+#Thief_Hp = random.randint(7,12)
+#Thief_Dmg = random.randint(5,7)
+
+#Rat_Hp = random.randint(4,7)
+#Rat_Dmg = random.randint(1,3)
+
+#WizardAcc_Hp = random.randint(18,22) 
+#WizardAcc_Dmg = random.randint(12,18)
+
+#Trainee_Hp = random.randint(15,17)
+#Trainee_Dmg = random.randint(10,12)
+
+#Nomad_Hp = random.randint(15,20)
+#Nomad_Dmg = random.randint(8,10)
+
+#Orc_Hp = random.randint(10,15)
+#Orc_Dmg = random.randint(10,15)
+
+#Goblin_Hp = random.randint(5,7)
+#Goblin_Dmg = random.randint(3,5)
+
+#Alatar_Hp = 70
+#Alatar_Dmg = random.randint(15,25)
+
+while(game):
+    #Tutorial
+    printText("'Why hello there squire, follow me to be annointed.' The person leaves to the East side of the room")
+    direction = input("Where will you go? n, e, s, or w >> ")
+    if direction == "e":
+        print("You follow the person out the room")
+    else:
+        print("You can not go there")
+    printText("'Why squire, you do not have you're gear! This can not do. Here, this weapon shall do.'")
+    printText("Player has recieved Wooden Sword!")
+    inventory.append(Wooden_Sword)
+    printText("'Ah, much better. Now follow me, the king is waiting.'")
+    direction = input("Where will you go? n, e, s, or w >> ")
+    if direction == "e":
+        print("You follow the person out the room")
+        game = False
+    else:
+        printText("You can not go there")
+    printText("You approach what appears to be the Throne Room.")
+    printText("'Ah there you are, I have been waiting for you.' Bellows the king.")
+    printText("'I called you in here as I would like to annoint you to become a knight'")
+    printText("'Now that you have become a knight, I have a mission for you. I need you to retrieve the Scroll of Truths from the evil wizard Alatar who is located at his castle.'")
+    printText("'If he continues to have this scroll, he will eventually unravel sinister spells that could destroy our world.'")
+    printText("'Now go, the fate of the world is in your hands.'")
+
+    #Forest
+    printText("You embark on your journy. As you walk, you come accross a forest.")
+    printText("To continue, you must navigate your way through forest")
+    printText(location)
+    while(run):
+        while location != FE1
+            if location == FA1:
+                while location != FB2
+                    direction = input("Where will you go? >> ")
+                    if direction == "e":
+                        location = FB2
+                    else:
+                        print("Where exactly is that?")
+            elif location == FB2:
+                x = encounter(4)
+                if x > 1:
+                    printText("You have come across a thief")
+                    Thief_Hp = random.randint(7,12)
+                    print("Player has ",Player_Hp, "HP")
+                    print("Enemy has ",Thief_Hp, "HP")
+                    while(fight):
+                        print(inventory)
+                        attack = input("What will you use? >> ")
+                        if attack in inventory:
+                            if attack == "Wooden Sword":
+                                damage = random.randint(2,5)
+                                Thief_Hp -= damage
+                            else:
+                                print("Not in inventory")
+                        print("Player attacks!")
+                        print("Player deals", damage, "damage")
+                        print("Enemy is now at ", Thief_Hp, " hp")
+                        print()
+                        if Thief_Hp <= 0:
+                            fight = False
+
+                        print("Enemy attacks!")
+                        Thief_Dmg = random.randint(5,7)
+                        print("Enemy deals ", Thief_Dmg, " damage")
+                        Player_Hp -= Thief_Dmg
+                        print("Player is now at ", Player_Hp, " hp")
+                        print()
+                        if Player_Hp <= 0:
+                            fight = False
+                else:
+                    printText("Everything seems fine")
+                while location != FB1 and location != FB3 and location != FC3:
+                    direction = input("Where will you go? >> ")
+                    if direction == "n":
+                        location = FB1
+                    elif direction == "s":
+                        location = FB3
+                    elif direction == "e":
+                        location = FC3
+                    elif direction == "w":
+                        printText("Do not leave the forest, we need to press on")
+                    else:
+                        print("Where exactly is that?")
+            elif location == FB1:
+                x = encounter(4)
+                if x > 1:
+                    printText("You have come across a thief")
+                    Thief_Hp = random.randint(7,12)
+                    print("Player has ",Player_Hp, "HP")
+                    print("Enemy has ",Thief_Hp, "HP")
+                    while(fight):
+                        print(inventory)
+                        attack = input("What will you use? >> ")
+                        if attack in inventory:
+                            if attack == "Wooden Sword":
+                                damage = random.randint(2,5)
+                                Thief_Hp -= damage
+                            else:
+                                print("Not in inventory")
+                        print("Player attacks!")
+                        print("Player deals", damage, "damage")
+                        print("Enemy is now at ", Thief_Hp, " hp")
+                        print()
+                        if Thief_Hp <= 0:
+                            fight = False
+
+                        print("Enemy attacks!")
+                        Thief_Dmg = random.randint(5,7)
+                        print("Enemy deals ", Thief_Dmg, " damage")
+                        Player_Hp -= Thief_Dmg
+                        print("Player is now at ", Player_Hp, " hp")
+                        print()
+                        if Player_Hp <= 0:
+                            fight = False
+                else:
+                    printText("Everything seems fine")
+                while location != FB2 and location != FC2:
+                    direction = input("Where will you go? >> ")
+                    if direction == "e":
+                        location = FC2
+                    elif direction == "s":
+                        location = FB2
+                    else:
+                        print("Where exactly is that?")
+            elif location == FB3:
+                x = encounter(4)
+                if x > 1:
+                    printText("You have come across a thief")
+                    Thief_Hp = random.randint(7,12)
+                    print("Player has ",Player_Hp, "HP")
+                    print("Enemy has ",Thief_Hp, "HP")
+                    while(fight):
+                        print(inventory)
+                        attack = input("What will you use? >> ")
+                        if attack in inventory:
+                            if attack == "Wooden Sword":
+                                damage = random.randint(2,5)
+                                Thief_Hp -= damage
+                            else:
+                                print("Not in inventory")
+                        print("Player attacks!")
+                        print("Player deals", damage, "damage")
+                        print("Enemy is now at ", Thief_Hp, " hp")
+                        print()
+                        if Thief_Hp <= 0:
+                            fight = False
+
+                        print("Enemy attacks!")
+                        Thief_Dmg = random.randint(5,7)
+                        print("Enemy deals ", Thief_Dmg, " damage")
+                        Player_Hp -= Thief_Dmg
+                        print("Player is now at ", Player_Hp, " hp")
+                        print()
+                        if Player_Hp <= 0:
+                            fight = False
+                else:
+                    printText("Everything seems fine")
+                while location != FB2 and location != FB4:
+                    direction = input("Where will you go? >> ")
+                    if direction == "n":
+                        location = FB2
+                    elif direction == "s":
+                        location = FB4
+                    else:
+                        print("Where exactly is that?")
+            elif location == FB4:
+                x = encounter(4)
+                if x > 1:
+                    printText("You have come across a thief")
+                    Thief_Hp = random.randint(7,12)
+                    print("Player has ",Player_Hp, "HP")
+                    print("Enemy has ",Thief_Hp, "HP")
+                    while(fight):
+                        print(inventory)
+                        attack = input("What will you use? >> ")
+                        if attack in inventory:
+                            if attack == "Wooden Sword":
+                                damage = random.randint(2,5)
+                                Thief_Hp -= damage
+                            else:
+                                print("Not in inventory")
+                        print("Player attacks!")
+                        print("Player deals", damage, "damage")
+                        print("Enemy is now at ", Thief_Hp, " hp")
+                        print()
+                        if Thief_Hp <= 0:
+                            fight = False
+
+                        print("Enemy attacks!")
+                        Thief_Dmg = random.randint(5,7)
+                        print("Enemy deals ", Thief_Dmg, " damage")
+                        Player_Hp -= Thief_Dmg
+                        print("Player is now at ", Player_Hp, " hp")
+                        print()
+                        if Player_Hp <= 0:
+                            fight = False
+                else:
+                    printText("Everything seems fine")
+                while location != FB3 and location != FB5 and location != FC4:
+                    direction = input("Where will you go? >> ")
+                    if direction == "n":
+                        location = FB3
+                    elif direction == "s":
+                        location = FB5
+                    elif direction == "e":
+                        location = FC4
+                    else:
+                        print("Where exactly is that?")
+            elif location == FC1:
+                x = encounter(4)
+                if x > 1:
+                    printText("You have come across a thief")
+                    Thief_Hp = random.randint(7,12)
+                    print("Player has ",Player_Hp, "HP")
+                    print("Enemy has ",Thief_Hp, "HP")
+                    while(fight):
+                        print(inventory)
+                        attack = input("What will you use? >> ")
+                        if attack in inventory:
+                            if attack == "Wooden Sword":
+                                damage = random.randint(2,5)
+                                Thief_Hp -= damage
+                            else:
+                                print("Not in inventory")
+                        print("Player attacks!")
+                        print("Player deals", damage, "damage")
+                        print("Enemy is now at ", Thief_Hp, " hp")
+                        print()
+                        if Thief_Hp <= 0:
+                            fight = False
+
+                        print("Enemy attacks!")
+                        Thief_Dmg = random.randint(5,7)
+                        print("Enemy deals ", Thief_Dmg, " damage")
+                        Player_Hp -= Thief_Dmg
+                        print("Player is now at ", Player_Hp, " hp")
+                        print()
+                        if Player_Hp <= 0:
+                            fight = False
+                else:
+                    printText("Everything seems fine")
+                while location != FC2:
+                    direction = input("Where will you go? >> ")
+                    if direction == "s":
+                        location = FC2
+                    else:
+                        print("Where exactly is that?")
+            elif location == FC2:
+                x = encounter(4)
+                if x > 1:
+                    printText("You have come across a thief")
+                    Thief_Hp = random.randint(7,12)
+                    print("Player has ",Player_Hp, "HP")
+                    print("Enemy has ",Thief_Hp, "HP")
+                    while(fight):
+                        print(inventory)
+                        attack = input("What will you use? >> ")
+                        if attack in inventory:
+                            if attack == "Wooden Sword":
+                                damage = random.randint(2,5)
+                                Thief_Hp -= damage
+                            else:
+                                print("Not in inventory")
+                        print("Player attacks!")
+                        print("Player deals", damage, "damage")
+                        print("Enemy is now at ", Thief_Hp, " hp")
+                        print()
+                        if Thief_Hp <= 0:
+                            fight = False
+
+                        print("Enemy attacks!")
+                        Thief_Dmg = random.randint(5,7)
+                        print("Enemy deals ", Thief_Dmg, " damage")
+                        Player_Hp -= Thief_Dmg
+                        print("Player is now at ", Player_Hp, " hp")
+                        print()
+                        if Player_Hp <= 0:
+                            fight = False
+                else:
+                    printText("Everything seems fine")
+                while location != FB1 and location != FC1:
+                    direction = input("Where will you go? >> ")
+                    if direction == "n":
+                        location = FC1
+                    elif direction == "w":
+                        location = FB1
+                    else:
+                        print("Where exactly is that?")
+            elif location == FC3:
+                x = encounter(4)
+                if x > 1:
+                    printText("You have come across a thief")
+                    Thief_Hp = random.randint(7,12)
+                    print("Player has ",Player_Hp, "HP")
+                    print("Enemy has ",Thief_Hp, "HP")
+                    while(fight):
+                        print(inventory)
+                        attack = input("What will you use? >> ")
+                        if attack in inventory:
+                            if attack == "Wooden Sword":
+                                damage = random.randint(2,5)
+                                Thief_Hp -= damage
+                            else:
+                                print("Not in inventory")
+                        print("Player attacks!")
+                        print("Player deals", damage, "damage")
+                        print("Enemy is now at ", Thief_Hp, " hp")
+                        print()
+                        if Thief_Hp <= 0:
+                            fight = False
+
+                        print("Enemy attacks!")
+                        Thief_Dmg = random.randint(5,7)
+                        print("Enemy deals ", Thief_Dmg, " damage")
+                        Player_Hp -= Thief_Dmg
+                        print("Player is now at ", Player_Hp, " hp")
+                        print()
+                        if Player_Hp <= 0:
+                            fight = False
+                else:
+                    printText("Everything seems fine")
+                while location != FB2 and location != FD1:
+                    direction = input("Where will you go? >> ")
+                    if direction == "e":
+                        location = FD1
+                    elif direction == "w":
+                        location = FB2
+                    else:
+                        print("Where exactly is that?")
+            elif location == FC4:
+                x = encounter(4)
+                if x > 1:
+                    printText("You have come across a thief")
+                    Thief_Hp = random.randint(7,12)
+                    print("Player has ",Player_Hp, "HP")
+                    print("Enemy has ",Thief_Hp, "HP")
+                    while(fight):
+                        print(inventory)
+                        attack = input("What will you use? >> ")
+                        if attack in inventory:
+                            if attack == "Wooden Sword":
+                                damage = random.randint(2,5)
+                                Thief_Hp -= damage
+                            else:
+                                print("Not in inventory")
+                        print("Player attacks!")
+                        print("Player deals", damage, "damage")
+                        print("Enemy is now at ", Thief_Hp, " hp")
+                        print()
+                        if Thief_Hp <= 0:
+                            fight = False
+
+                        print("Enemy attacks!")
+                        Thief_Dmg = random.randint(5,7)
+                        print("Enemy deals ", Thief_Dmg, " damage")
+                        Player_Hp -= Thief_Dmg
+                        print("Player is now at ", Player_Hp, " hp")
+                        print()
+                        if Player_Hp <= 0:
+                            fight = False
+                else:
+                    printText("Everything seems fine")
+                while location != FB4:
+                    direction = input("Where will you go? >> ")
+                    if direction == "w":
+                        location = FB4
+                    else:
+                        print("Where exactly is that?")
+            elif location == FD1:
+                x = encounter(4)
+                if x > 1:
+                    printText("You have come across a thief")
+                    Thief_Hp = random.randint(7,12)
+                    print("Player has ",Player_Hp, "HP")
+                    print("Enemy has ",Thief_Hp, "HP")
+                    while(fight):
+                        print(inventory)
+                        attack = input("What will you use? >> ")
+                        if attack in inventory:
+                            if attack == "Wooden Sword":
+                                damage = random.randint(2,5)
+                                Thief_Hp -= damage
+                            else:
+                                print("Not in inventory")
+                        print("Player attacks!")
+                        print("Player deals", damage, "damage")
+                        print("Enemy is now at ", Thief_Hp, " hp")
+                        print()
+                        if Thief_Hp <= 0:
+                            fight = False
+
+                        print("Enemy attacks!")
+                        Thief_Dmg = random.randint(5,7)
+                        print("Enemy deals ", Thief_Dmg, " damage")
+                        Player_Hp -= Thief_Dmg
+                        print("Player is now at ", Player_Hp, " hp")
+                        print()
+                        if Player_Hp <= 0:
+                            fight = False
+                else:
+                    printText("Everything seems fine")
+                while location != FC3 and location != FD2:
+                    direction = input("Where will you go? >> ")
+                    if direction == "w":
+                        location = FC3
+                    elif direction == "s":
+                        location = FD2
+                    else:
+                        print("Where exactly is that?")
+            elif location == FD2:
+                x = encounter(4)
+                if x > 1:
+                    printText("You have come across a thief")
+                    Thief_Hp = random.randint(7,12)
+                    print("Player has ",Player_Hp, "HP")
+                    print("Enemy has ",Thief_Hp, "HP")
+                    while(fight):
+                        print(inventory)
+                        attack = input("What will you use? >> ")
+                        if attack in inventory:
+                            if attack == "Wooden Sword":
+                                damage = random.randint(2,5)
+                                Thief_Hp -= damage
+                            else:
+                                print("Not in inventory")
+                        print("Player attacks!")
+                        print("Player deals", damage, "damage")
+                        print("Enemy is now at ", Thief_Hp, " hp")
+                        print()
+                        if Thief_Hp <= 0:
+                            fight = False
+
+                        print("Enemy attacks!")
+                        Thief_Dmg = random.randint(5,7)
+                        print("Enemy deals ", Thief_Dmg, " damage")
+                        Player_Hp -= Thief_Dmg
+                        print("Player is now at ", Player_Hp, " hp")
+                        print()
+                        if Player_Hp <= 0:
+                            fight = False
+                else:
+                    printText("Everything seems fine")
+                while location != FD1 and location != FE1:
+                    direction = input("Where will you go? >> ")
+                    if direction == "n":
+                        location = FD1
+                    elif direction == "e":
+                        location = FE1
+                    else:
+                        print("Where exactly is that?")
+            elif location == FE1:
+                x = encounter(4)
+                if x > 1:
+                    printText("You have come across a thief")
+                    Thief_Hp = random.randint(7,12)
+                    print("Player has ",Player_Hp, "HP")
+                    print("Enemy has ",Thief_Hp, "HP")
+                    while(fight):
+                        print(inventory)
+                        attack = input("What will you use? >> ")
+                        if attack in inventory:
+                            if attack == "Wooden Sword":
+                                damage = random.randint(2,5)
+                                Thief_Hp -= damage
+                            else:
+                                print("Not in inventory")
+                        print("Player attacks!")
+                        print("Player deals", damage, "damage")
+                        print("Enemy is now at ", Thief_Hp, " hp")
+                        print()
+                        if Thief_Hp <= 0:
+                            fight = False
+
+                        print("Enemy attacks!")
+                        Thief_Dmg = random.randint(5,7)
+                        print("Enemy deals ", Thief_Dmg, " damage")
+                        Player_Hp -= Thief_Dmg
+                        print("Player is now at ", Player_Hp, " hp")
+                        print()
+                        if Player_Hp <= 0:
+                            fight = False
+                else:
+                    printText("Everything seems fine")
+            printText(location)
+        printText("Now to go onward")
+                
+
+    printText(location)
